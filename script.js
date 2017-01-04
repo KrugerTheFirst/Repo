@@ -5,6 +5,9 @@ var slownik={
 
 
 //losowanie znaków hiragany
+//tip 1)iteracja obiektów js
+// 2)math.random
+//W danym zakresie random (zmiana)
 function losowanie(){
 
 
