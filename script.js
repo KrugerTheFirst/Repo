@@ -52,12 +52,51 @@ slownik['ん'] = 'n';
 //tip 1)iteracja obiektów js
 // 2)math.random
 //W danym zakresie random (zmiana)
-function losowanie() {
+function slownikDlugosc(object) {
+    var length = 0;
 
+    for (var hiragana in object) {
+        ++length;
+    }
+    return length;
+}
 
+function losowanie(slownik) {
+    return Math.floor(Math.random() * slownikDlugosc(slownik));
+
+}
+
+function usuwaniePowtorzenZeSlownika(object, index) {
+    var i = 0;
+    var elementDoUsuniecia
+    for (var element in object) {
+        if (i == index) {
+            elementDoUsuniecia = element;
+            delete object[element];
+        }
+        ++i;
+    }
+    return [object, elementDoUsuniecia];
+}
+
+//Przetwarzam JSONA na obiekt, słownik i kopiuje go
+function LosowanieBezPowtorzen(slownik) {
+    var slownikKopia = JSON.parse(JSON.stringify(slownik));
+    var wylosowane = [];
+    var i = 0;
+    while (i < 10) {
+        var rand = losowanie(slownikKopia);
+        var zwrotka = usuwaniePowtorzenZeSlownika(slownikKopia, rand);
+        slownikKopia = zwrotka[0]
+        ++i;
+        wylosowane.push(zwrotka[1]);
+    }
+    return wylosowane;
 }
 //sprawdzanie z funkcji losującej do odpowiedzi zapisanej przez użytkownika
 function sprawdzanie() {
-
-
 }
+//Funkcja (math.floor) najpierw zbiera informacje co do tablicy zapisanej, potem dopiero system zastanawia się nad znaczeniem "slownikDlugosc"
+//"slownikDlugosc" przypisuje znaki slownika jako cyfry i wpisuje je jako liczby, dzieki czemj Math.random może je wypluć jako liczby
+
+console.log (LosowanieBezPowtorzen(slownik));
