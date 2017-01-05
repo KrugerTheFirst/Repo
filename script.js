@@ -100,3 +100,7 @@ function sprawdzanie() {
 //"slownikDlugosc" przypisuje znaki slownika jako cyfry i wpisuje je jako liczby, dzieki czemj Math.random może je wypluć jako liczby
 
 console.log (LosowanieBezPowtorzen(slownik));
+
+//Zrozumienie kodu
+//podmiana "mark" na hiragane
+//system sprawdzania poprawności (jakie funkcje)
