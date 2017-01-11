@@ -47,11 +47,7 @@ slownik['わ'] = 'wa';
 slownik['を'] = 'wo';
 slownik['ん'] = 'n';
 
-
-//losowanie znaków hiragany
-//tip 1)iteracja obiektów js
-// 2)math.random
-//W danym zakresie random (zmiana)
+//Przyporzadkowuje elementy tablicy odpowiednim liczbom by mogly pozniej zostac wylosowane przez funkcje "losowanie"
 function slownikDlugosc(object) {
     var length = 0;
 
@@ -61,11 +57,13 @@ function slownikDlugosc(object) {
     return length;
 }
 
+//Funkcja (math.floor) najpierw zbiera informacje co do tablicy zapisanej, potem dopiero system zastanawia się nad znaczeniem "slownikDlugosc"
+//"slownikDlugosc" przypisuje znaki slownika jako cyfry i wpisuje je jako liczby, dzieki czemu Math.random może je wypluć jako liczby
 function losowanie(slownik) {
     return Math.floor(Math.random() * slownikDlugosc(slownik));
-
 }
-
+//Funkcja zbiera obiekty ze "skopiowanej" tablicy i po wybraniu jednego "usuwa" go z tabeli losującej, by nie nastąpiły powtórzenia w losowaniu
+//Po wybraniu "przywraca" obiekt, ale nie jest już on na liście losującej
 function usuwaniePowtorzenZeSlownika(object, index) {
     var i = 0;
     var elementDoUsuniecia
@@ -80,6 +78,7 @@ function usuwaniePowtorzenZeSlownika(object, index) {
 }
 
 //Przetwarzam JSONA na obiekt, słownik i kopiuje go
+//Jednocześnie pobiera 10 elementów z tablicy, przechodząc najpierw przez dunkcję "usuwaniePowtorzenZeSlownika" by nie powtarzac elementow
 function LosowanieBezPowtorzen(slownik) {
     var slownikKopia = JSON.parse(JSON.stringify(slownik));
     var wylosowane = [];
@@ -93,11 +92,11 @@ function LosowanieBezPowtorzen(slownik) {
     }
     return wylosowane;
 }
+
 //sprawdzanie z funkcji losującej do odpowiedzi zapisanej przez użytkownika
 function sprawdzanie() {
 }
-//Funkcja (math.floor) najpierw zbiera informacje co do tablicy zapisanej, potem dopiero system zastanawia się nad znaczeniem "slownikDlugosc"
-//"slownikDlugosc" przypisuje znaki slownika jako cyfry i wpisuje je jako liczby, dzieki czemj Math.random może je wypluć jako liczby
+
 
 console.log (LosowanieBezPowtorzen(slownik));
 
