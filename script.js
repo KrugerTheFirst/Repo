@@ -58,12 +58,11 @@ function slownikDlugosc(object) {
 }
 
 //Funkcja (math.floor) najpierw zbiera informacje co do tablicy zapisanej, potem dopiero system zastanawia się nad znaczeniem "slownikDlugosc"
-//"slownikDlugosc" przypisuje znaki slownika jako cyfry i wpisuje je jako liczby, dzieki czemu Math.random może je wypluć jako liczby
+//Tworzy zakres losowania
 function losowanie(slownik) {
     return Math.floor(Math.random() * slownikDlugosc(slownik));
 }
 //Funkcja zbiera obiekty ze "skopiowanej" tablicy i po wybraniu jednego "usuwa" go z tabeli losującej, by nie nastąpiły powtórzenia w losowaniu
-//Po wybraniu "przywraca" obiekt, ale nie jest już on na liście losującej
 function usuwaniePowtorzenZeSlownika(object, index) {
     var i = 0;
     var elementDoUsuniecia
@@ -76,6 +75,17 @@ function usuwaniePowtorzenZeSlownika(object, index) {
     }
     return [object, elementDoUsuniecia];
 }
+
+function wypelnijEtykietki(slownik) {
+    var wylosowaneElementy = (LosowanieBezPowtorzen(slownik));
+    console.log(wylosowaneElementy[4]);
+    for (var i = 0; i < wylosowaneElementy.length; i++) {
+        document.querySelectorAll('[for ="mark0' + i + '"]')[0].innerHTML = wylosowaneElementy[i]
+    }
+}
+
+
+wypelnijEtykietki(slownik);
 
 //Przetwarzam JSONA na obiekt, słownik i kopiuje go
 //Jednocześnie pobiera 10 elementów z tablicy, przechodząc najpierw przez dunkcję "usuwaniePowtorzenZeSlownika" by nie powtarzac elementow
@@ -98,8 +108,10 @@ function sprawdzanie() {
 }
 
 
-console.log (LosowanieBezPowtorzen(slownik));
 
 //Zrozumienie kodu
-//podmiana "mark" na hiragane
 //system sprawdzania poprawności (jakie funkcje)
+
+//IF!!! Insturkcje warunkowe
+//Pętle for while
+//W jaki sposób sprawdzić
