@@ -50,7 +50,6 @@ slownik['ん'] = 'n';
 //Przyporzadkowuje elementy tablicy odpowiednim liczbom by mogly pozniej zostac wylosowane przez funkcje "losowanie"
 function slownikDlugosc(object) {
     var length = 0;
-
     for (var hiragana in object) {
         ++length;
     }
@@ -105,6 +104,8 @@ function LosowanieBezPowtorzen(slownik) {
 
 //sprawdzanie z funkcji losującej do odpowiedzi zapisanej przez użytkownika
 function sprawdzanie() {
+    //Wylosowane elemtney
+
 }
 
 
