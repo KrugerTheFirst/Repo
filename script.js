@@ -75,15 +75,6 @@ function usuwaniePowtorzenZeSlownika(object, index) {
     return [object, elementDoUsuniecia];
 }
 
-function wypelnijEtykietki(slownik) {
-    var wylosowaneElementy = (LosowanieBezPowtorzen(slownik));
-    console.log(wylosowaneElementy[4]);
-    for (var i = 0; i < wylosowaneElementy.length; i++) {
-        document.querySelectorAll('[for ="mark0' + i + '"]')[0].innerHTML = wylosowaneElementy[i]
-    }
-}
-
-
 wypelnijEtykietki(slownik);
 
 //Przetwarzam JSONA na obiekt, słownik i kopiuje go
@@ -102,17 +93,42 @@ function LosowanieBezPowtorzen(slownik) {
     return wylosowane;
 }
 
-//sprawdzanie z funkcji losującej do odpowiedzi zapisanej przez użytkownika
-function sprawdzanie() {
-    //Wylosowane elemtney
+function wypelnijEtykietki(wylosowaneElementy) {
+    for (var i = 0; i < wylosowaneElementy.length; i++) {
+        document.querySelectorAll('[for ="mark0' + i + '"]')[0].innerHTML = wylosowaneElementy[i]
+    }
+}
+
+function sprawdzanie(wylosowaneElementy, slownik) {
+    for (var i = 0; i < wylosowaneElementy.length; i++) {
+        var label =  document.querySelectorAll('[for ="mark0' + i + '"]')[0];
+        var userInput = document.getElementById('mark0' + i);
+
+
+        var wylosowanaHiragana = wylosowaneElementy[i];
+        var poprawnaOdp = slownik[wylosowanaHiragana];
+        if(userInput.value != poprawnaOdp){
+            label.style = 'color:red';
+        }else{
+
+            label.style = 'color:black';
+        }
+    }
+}
+
+//1. Wylosowanie Elementów (przypisanie do zmiennnych)
+//2. Wypełnienie Etykietek
+//3. Sprawdzanie po kliku na sprawdź
+
+var wylosowaneElementy = (LosowanieBezPowtorzen(slownik));
+wypelnijEtykietki(wylosowaneElementy)
+
+var checkButton =  document.getElementById("checkButton")
+checkButton.onclick = function(){
+    sprawdzanie(wylosowaneElementy, slownik);
 
 }
 
-
-
-//Zrozumienie kodu
-//system sprawdzania poprawności (jakie funkcje)
-
-//IF!!! Insturkcje warunkowe
-//Pętle for while
-//W jaki sposób sprawdzić
+//ZROZUMIENIE KRÓTKIE I KONKRETNE!
+//HTML
+//PIxele (choinka)
