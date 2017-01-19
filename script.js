@@ -47,7 +47,7 @@ slownik['わ'] = 'wa';
 slownik['を'] = 'wo';
 slownik['ん'] = 'n';
 
-//Przyporzadkowuje elementy tablicy odpowiednim liczbom by mogly pozniej zostac wylosowane przez funkcje "losowanie"
+//sortowanie obiektów
 function slownikDlugosc(object) {
     var length = 0;
     for (var hiragana in object) {
@@ -56,12 +56,11 @@ function slownikDlugosc(object) {
     return length;
 }
 
-//Funkcja (math.floor) najpierw zbiera informacje co do tablicy zapisanej, potem dopiero system zastanawia się nad znaczeniem "slownikDlugosc"
-//Tworzy zakres losowania
+//losowanie obiektów słownika po jego długości
 function losowanie(slownik) {
     return Math.floor(Math.random() * slownikDlugosc(slownik));
 }
-//Funkcja zbiera obiekty ze "skopiowanej" tablicy i po wybraniu jednego "usuwa" go z tabeli losującej, by nie nastąpiły powtórzenia w losowaniu
+//usuwa wybrane już elementy ze słownika zwracając je
 function usuwaniePowtorzenZeSlownika(object, index) {
     var i = 0;
     var elementDoUsuniecia
@@ -77,8 +76,7 @@ function usuwaniePowtorzenZeSlownika(object, index) {
 
 wypelnijEtykietki(slownik);
 
-//Przetwarzam JSONA na obiekt, słownik i kopiuje go
-//Jednocześnie pobiera 10 elementów z tablicy, przechodząc najpierw przez dunkcję "usuwaniePowtorzenZeSlownika" by nie powtarzac elementow
+//losuje na "kopi" słownika 10 jego elementów i wypluwa je
 function LosowanieBezPowtorzen(slownik) {
     var slownikKopia = JSON.parse(JSON.stringify(slownik));
     var wylosowane = [];
@@ -93,12 +91,15 @@ function LosowanieBezPowtorzen(slownik) {
     return wylosowane;
 }
 
+//wypełnia etykiety HTMLA wylosowanymi elementami
 function wypelnijEtykietki(wylosowaneElementy) {
     for (var i = 0; i < wylosowaneElementy.length; i++) {
         document.querySelectorAll('[for ="mark0' + i + '"]')[0].innerHTML = wylosowaneElementy[i]
     }
 }
 
+
+//sprawdza poprawność odpowiedzi usera z oryginalną odpowiedzią
 function sprawdzanie(wylosowaneElementy, slownik) {
     for (var i = 0; i < wylosowaneElementy.length; i++) {
         var label =  document.querySelectorAll('[for ="mark0' + i + '"]')[0];
