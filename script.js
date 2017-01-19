@@ -1,4 +1,4 @@
-//hiragana z odpowiednim tłumaczeniem
+//obiekt w formie tablicowej
 var slownik = {};
 slownik['あ'] = 'a';
 slownik['い'] = 'i';
@@ -47,7 +47,7 @@ slownik['わ'] = 'wa';
 slownik['を'] = 'wo';
 slownik['ん'] = 'n';
 
-//sortowanie obiektów
+//liczenie obiektów
 function slownikDlugosc(object) {
     var length = 0;
     for (var hiragana in object) {
@@ -76,7 +76,7 @@ function usuwaniePowtorzenZeSlownika(object, index) {
 
 wypelnijEtykietki(slownik);
 
-//losuje na "kopi" słownika 10 jego elementów i wypluwa je
+//losuje na kopi słownika 10 jego elementów i wypluwa je
 function LosowanieBezPowtorzen(slownik) {
     var slownikKopia = JSON.parse(JSON.stringify(slownik));
     var wylosowane = [];
